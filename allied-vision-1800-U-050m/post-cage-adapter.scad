@@ -1,10 +1,10 @@
 // adapt camera to a post mount or 30 mm cage mount
 // for post mount, requires threaded press insert
 
-$fn=50;
+$fn=100;
 inch=25.4;
 
-cd = 28; // hole diameter for camera
+cd = 21.2; // hole diameter for camera
 // smount has 21.0 mm diameter
 // cmount has 27.8 mm diameter
 
@@ -13,7 +13,7 @@ csm1 = 1.2*inch; // hole diameter for sm1 mount
 csq = 24.0; // mounting square dimension for camera
 csq_d = 2.2; // hole size for mounting square
 
-post_d = 0.218*inch; // hole diameter for post mount
+post_d = 0.2185*inch; // hole diameter for post mount
 post_depth = 0.32*inch; 
 
 cage = 30.0; // square dimension for cage
@@ -36,7 +36,6 @@ module roundedRect(size, radius) {
     }
   }
 }
-
 
 difference() {
   // positive rectangle
