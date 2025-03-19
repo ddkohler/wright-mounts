@@ -30,7 +30,7 @@ difference(){
     };
     union(){
         through_hole(2.18, [35.6, 24.2, 0]);
-        through_hole(2.18, [5.1, 3.3, 0]);
+        through_hole(2.18, [5.1, 2.5, 0]);
         for (i=[0:5]) {through_hole(1.52, [38.1-3.81, 1.75 + 3.5*i]);
         }
         for (i=[0:9]) {

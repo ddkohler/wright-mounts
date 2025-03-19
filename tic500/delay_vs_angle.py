@@ -3,7 +3,7 @@
 import numpy as np
 
 
-w = 3e-3   # window length, in m
+w = 2e-3   # window length, in m
 n1 = 1.  # refractive index of air
 n2 = 1.45  # refractive index of window material
 
@@ -24,27 +24,44 @@ def calculate(alpha, w=w, n1=n1, n2=n2):
         path_difference = path_difference,
     )
 
+def total_reflectivitiy(theta, n1=n1, n2=n2, polarization="p"):
+    c1 = (1- (n1/n2 * np.sin(theta))**2 )**0.5
+    if polarization == "p":
+        top = n1 * c1 - n2 * np.cos(theta)
+        bottom = n1 * c1 + n2 * np.cos(theta)
+    elif polarization == "s":
+        top = n1 * np.cos(theta) - n2 * c1
+        bottom = n1 * np.cos(theta) + n2 * c1
+    else:
+        raise ValueError
+    r = np.abs(top / bottom)**2
+    return 1 - (1 - r)**4
+
 
 if __name__ == "__main__":
-    alpha = np.linspace(0, 70, 90)
+    alpha = np.arange(0, 70, 1.8)
+    # alpha = np.linspace(0, 70, 90)
     calculations = [a for a in map(calculate, alpha * np.pi / 180)]
     opt_delay = np.array([a["path_difference"]/3e8 for a in calculations])
     no_refraction = lambda a: 2 * (n2-n1) *a["C"]
     approx_delay = np.array([x/3e8 for x in map(no_refraction, calculations)])
 
     import matplotlib.pyplot as plt
-    fig, (ax1, ax2) = plt.subplots(nrows=2, sharex=True)
-    ax1.plot(alpha, opt_delay *1e12)
-    ax1.plot(alpha, approx_delay * 1e12)
+    fig, (ax1, ax2, ax3) = plt.subplots(figsize=(5,8), nrows=3, sharex=True)
 
-    ax2.plot(alpha, np.array([2 * a["B1"]*1e3 for a in calculations]))
+    ax1.plot(alpha, opt_delay * 1e12, lw=2, marker="o")
+    # ax1.plot(alpha, approx_delay * 1e12)
+    ax2.plot(alpha, np.array([2 * a["B1"]*1e3 for a in calculations]), lw=2)
+    ax3.plot(alpha, total_reflectivitiy(alpha * np.pi / 180), lw=2, label="p-pol")
+    ax3.plot(alpha, total_reflectivitiy(alpha * np.pi / 180, polarization="s"), lw=2, label="s-pol")
 
     ax1.set_ylabel("optical delay (ps)")
-    ax2.set_ylabel("window_travel length (mm)")
-    ax2.set_xlabel("incidence angle (deg)")
+    ax2.set_ylabel("window travel length (mm)")
+    ax3.set_ylabel("total reflective loss fraction")
+    ax3.set_xlabel("incidence angle (deg)")
     ax1.set_title(f"w={w*1e3} mm, n={n2}")
     # ax1.set_ylim(0, 10)
-    ax1.set_xlim(0, 70)
+    ax1.set_xlim(30, 70)
     [ax.grid() for ax in fig.axes]
     plt.show()
 
