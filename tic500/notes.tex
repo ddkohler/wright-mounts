@@ -1,0 +1,37 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\section{Important features of tilted window delay stages}
+\begin{itemize}
+    \item polarized transmission; rotation axes should orient normal to beam polarization
+    \item small, but tunable dynamic range (a fraction of the travel length of the window)
+    \item no beam path folding (can be retrofit inline quickly)
+    \item non-linear step size.  Step value can be customized with e.g. microstepping or via gearhead systems
+    \item easy DIY construction, low motor loads, no linear actuation (which is more expensive)
+    \item color-dependent delay values
+\end{itemize}
+
+\section{Design notes}
+\begin{itemize}
+    \item the optimal angle range is around the Brewster angle, where transmission is high.  obvious limits of oblique angle due to clipping
+    \item can determine angle/beam relationship by orienting normal and measuring the change path length (which gives n*L)
+    \item thickness of optic glass is limited to by group velocity dispersion, which will distort the pulse; see https://www.edmundoptics.com/knowledge-center/application-notes/lasers/ultrafast-dispersion/
+\end{itemize}
+
+\begin{equation}\label{eq:pulse_broadening}
+    \tau_\text{out} = \tau_\text{in} \sqrt{1 + \frac{4\ln{2} \times GDD}{\tau_\text{in}^2}^2}
+\end{equation}
+where $GDD=GVD \times \ell$ and $GVD=\frac{\partial}{\partial\omega} \frac{1}{v_g} = \frac{\partial^2 k}{\partial\omega^2}$.  GVD typically has units of $\text{fs}^2 / \text{mm}$.
+A GDD of $\sim 10^5 \ \text{fs}^2$ can distort picosecond pulses.
+
+\begin{equation}\label{eq:v_g}
+    v_g = \frac{c}{n(\omega) + \omega \frac{\partial n}{\partial\omega}}
+\end{equation}
+
+\section{Math for the optical paths}
+
+
+\end{document}
