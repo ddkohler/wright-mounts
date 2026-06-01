@@ -360,8 +360,8 @@ cutoutsLeft =
 
 cutoutsRight =  
 [
-  [2.6, 0, 10, 3, 2, yappRoundedRect, yappCoordPCB],
-  [50, -8, 0, 0, 8/32*25.4+0.1, yappCircle, yappCoordPCB]
+  [3.2, 0, 9, 3, 1.7, yappRoundedRect, yappCoordPCB],
+  [50, -8, 0, 0, 5/32*25.4+0.1, yappCircle, yappCoordPCB]
 ];
 
 
@@ -440,9 +440,9 @@ boxMounts =
 //-------------------------------------------------------------------
 lightTubes =
 [
-    [7.4, 9, 2, 1.5, 1, 1, yappCircle, 0.],
-    [5.8, 26.7-12.4, 2, 1.5, 1, 1, yappCircle, 0.],
-    [9.5, 26.7-9.7, 2, 1.5, 1, 1, yappCircle, 0.],
+    [7.4, 9, 2, 1.5, 1, 0.5, yappCircle, 0.],
+    [5.8, 26.7-12.4, 2, 1.5, 1, 0.5, yappCircle, 0.],
+    [9.5, 26.7-9.7, 2, 1.5, 1, 0.5, yappCircle, 0.],
 ];
 
 //===================================================================
