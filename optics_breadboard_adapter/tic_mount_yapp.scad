@@ -60,7 +60,7 @@ printDisplayClips     = true;
 pcbLength           = 38.1; // front to back (X axis)
 pcbWidth            = 26.7; // side to side (Y axis)
 pcbThickness        = 1.6; 
-standoffHeight      = 12.5; //-- How much the PCB needs to be raised from the base to leave room for solderings and whatnot
+standoffHeight      = 10.5; //-- How much the PCB needs to be raised from the base to leave room for solderings and whatnot
 standoffDiameter    = 4;
 standoffPinDiameter = 2.1;
 standoffHoleSlack   = 0.4;
@@ -279,6 +279,9 @@ pcbStands =
 //-------------------------------------------------------------------
 connectors   =
 [
+    [3, 3, lidWallHeight, 0.112*25.4+0.1, 0.183*25.4+1, 4.2, 6, yappCoordBoxInside, yappThroughLid],
+    [paddingBack + paddingFront + pcbLength - 3, paddingLeft+paddingRight + pcbWidth - 3, lidWallHeight, 0.112*25.4+0.1, 0.183*25.4+1, 4.2, 6, yappCoordBoxInside, yappThroughLid],
+    [paddingBack + paddingFront + pcbLength - 3, 3, lidWallHeight, 0.112*25.4+0.1, 0.183*25.4+1, 4.2, 6, yappCoordBoxInside, yappThroughLid],
 ];
 
 
@@ -361,7 +364,7 @@ cutoutsLeft =
 cutoutsRight =  
 [
   [3.2, 0, 9, 3, 1.7, yappRoundedRect, yappCoordPCB],
-  [50, -8, 0, 0, 5/32*25.4+0.1, yappCircle, yappCoordPCB]
+  [50, -6, 0, 0, 5/32*25.4+0.1, yappCircle, yappCoordPCB]
 ];
 
 
@@ -502,6 +505,9 @@ pushButtons =
 //-------------------------------------------------------------------
 labelsPlane =
 [
+    [20, 44, 0, 0.5, yappLid, "Liberation Mono:style=bold", 3, "USB"],
+    [20, 39, 0, 0.5, yappLid, "Liberation Mono:style=bold", 3, "ERR"],
+    [20, 34, 0, 0.5, yappLid, "Liberation Mono:style=bold", 3, "MOTOR"],
 ];
 
 
@@ -531,7 +537,7 @@ ridgeExtLeft =
 
 ridgeExtRight =
 [
-    [2.6, 10, 3, yappCoordPCB]
+    [3.2, 9, 1.5, yappCoordPCB]
 ];
 
 ridgeExtFront =
