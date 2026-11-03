@@ -5,7 +5,7 @@
 include <BOSL2/std.scad>
 include <BOSL2/screws.scad>
 
-$fn=25;
+$fn=50;
 plate_thickness = 5;
 inch = 25.4;
 backup_stage_y = 3; // move the retroreflectors along y to avoid other screwholes
@@ -23,6 +23,7 @@ hole_displacements = [
 echo(hole_displacements);
 // plate_dims = [47.6, 40];
 plate_dims = [50, 40];
+// aluminum density 2.7 g/cm^3; approximate weight of 2.7 * 5 * 4 * 0.5 ~ 27 g
 
 module rooftop_triangle(side=inch*sqrt(2)/2){
         // origin is the 90 deg vertex
@@ -106,28 +107,27 @@ module base(plate_thickness, plate_dims){
 };
 
 // just an ad-hoc visual of 45 deg triangle with 1" hypotenuse; for verifying the mirror placements look reasonable
-color("red", 0.5)
-translate([-4.8, 13, 22.1]) rotate([0, 0, 225]) linear_extrude(3, center=true){
-   rooftop_triangle();
-};
+// color("red", 0.5)
+// translate([-4.8, 13, 22.1]) rotate([0, 0, 225]) linear_extrude(3, center=true){
+//    rooftop_triangle();
+// };
 
 
 translate([0,0,-plate_thickness])
 base_v2(plate_thickness, plate_dims);
 
-// holes placed so that they are centered about x, but not y
-// kms hole
-color("silver", 0.5)
-translate([hole_displacements[0]/2, hole_displacements[1]+backup_stage_y, 0])
-rotate([0,0,45])
-translate([-kms_offset, 0, kms_v_offset])
-rotate([0,90,0])
-cylinder(6, r=inch/2);
+// kms mirror position
+// color("silver", 0.5)
+// translate([hole_displacements[0]/2, hole_displacements[1]+backup_stage_y, 0])
+// rotate([0,0,45])
+// translate([-kms_offset, 0, kms_v_offset])
+// rotate([0,90,0])
+// cylinder(6, r=inch/2);
 
-// fmp mirror face
-color("silver", 0.5)
-translate([-hole_displacements[0]/2, backup_stage_y, 0])
-rotate([0,0,45])
-translate([0, fmp_offset, fmp_v_offset])
-rotate([90,0,0])
-cylinder(6, r=inch/2);
+// fmp mirror position
+// color("silver", 0.5)
+// translate([-hole_displacements[0]/2, backup_stage_y, 0])
+// rotate([0,0,45])
+// translate([0, fmp_offset, fmp_v_offset])
+// rotate([90,0,0])
+// cylinder(6, r=inch/2);
